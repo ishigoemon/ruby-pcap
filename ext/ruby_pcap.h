@@ -30,8 +30,10 @@
 
 #ifdef DEBUG
 # define DEBUG_PRINT(x) do {\
-    ((RTEST(ruby_debug) && RTEST(ruby_verbose))?\
-    (fprintf(stderr, "%s\n", x),fflush(stderr)) : 0)\
+    if (RTEST(ruby_debug) && RTEST(ruby_verbose)) {\
+        fprintf(stderr, "%s\n", x);\
+        fflush(stderr);\
+    }\
 } while (0)
 #else
 # define DEBUG_PRINT(x) do {} while (0)
