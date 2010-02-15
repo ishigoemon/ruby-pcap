@@ -57,6 +57,7 @@ Gem::Specification.new do |s|
      "ext/Pcap.c",
      "ext/extconf.rb",
      "ext/icmp_packet.c",
+     "ext/igmp_packet.c",
      "ext/ip_packet.c",
      "ext/packet.c",
      "ext/ruby_pcap.h",

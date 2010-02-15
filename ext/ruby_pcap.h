@@ -25,6 +25,7 @@
 #include <netinet/tcp.h>
 #include <netinet/udp.h>
 #include <netinet/ip_icmp.h>
+#include <netinet/igmp.h>
 #include <sys/socket.h>
 #include <netdb.h>
 
@@ -132,5 +133,10 @@ VALUE setup_udp_packet(struct packet_object *, int);
 extern VALUE cICMPPacket;
 void Init_icmp_packet(void);
 VALUE setup_icmp_packet(struct packet_object *, int);
+
+/* igmp_packet.c */
+extern VALUE cIGMPPacket;
+void Init_igmp_packet(void);
+VALUE setup_igmp_packet(struct packet_object *, int);
 
 #endif /* RUBY_PCAP_H */

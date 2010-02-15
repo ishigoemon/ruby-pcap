@@ -48,6 +48,12 @@ module Pcap
     end
   end
 
+  class IGMPPacket
+    def to_s
+      "#{src} > #{dst}: igmp: #{igmp_typestr}"
+    end
+  end
+
   #
   # Backword compatibility
   #

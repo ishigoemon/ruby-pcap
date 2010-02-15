@@ -47,6 +47,9 @@ setup_ip_packet(pkt, nl_len)
                 case IPPROTO_ICMP:
                     class = setup_icmp_packet(pkt, tl_len);
                     break;
+                case IPPROTO_IGMP:
+                    class = setup_igmp_packet(pkt, tl_len);
+                    break;
                 }               
             }
         }
@@ -375,4 +378,5 @@ Init_ip_packet(void)
     Init_tcp_packet();
     Init_udp_packet();
     Init_icmp_packet();
+    Init_igmp_packet();
 }
