@@ -289,6 +289,8 @@ PACKET_METHOD(packet_caplen, UINT32_2_NUM(pkt->hdr.pkthdr.caplen));
 PACKET_METHOD(packet_time, rb_time_new(pkt->hdr.pkthdr.ts.tv_sec,
                                        pkt->hdr.pkthdr.ts.tv_usec));
 PACKET_METHOD(packet_time_i, rb_int2inum(pkt->hdr.pkthdr.ts.tv_sec));
+PACKET_METHOD(packet_time_f, rb_float_new(pkt->hdr.pkthdr.ts.tv_sec +
+                                          (pkt->hdr.pkthdr.ts.tv_usec * 0.000001)));
 PACKET_METHOD(packet_raw_data, rb_str_new(pkt->data, pkt->hdr.pkthdr.caplen));
 
 void
@@ -315,6 +317,7 @@ Init_packet(void)
     rb_define_method(cPacket, "size", packet_length, 0);
     rb_define_method(cPacket, "caplen", packet_caplen, 0);
     rb_define_method(cPacket, "time", packet_time, 0);
+    rb_define_method(cPacket, "time_f", packet_time_f, 0);
     rb_define_method(cPacket, "time_i", packet_time_i, 0);
     rb_define_method(cPacket, "time_i=", packet_set_time_i, 1);
     rb_define_method(cPacket, "raw_data", packet_raw_data, 0);
