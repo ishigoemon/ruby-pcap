@@ -232,6 +232,16 @@ ipaddr_s_new(self, val)
 }
 
 static VALUE
+ipaddr_is_mcast(self)
+    VALUE self;
+{
+  struct in_addr *addr;
+
+  GetIPAddress(self, addr);
+  return IN_MULTICAST(ntohl(addr->s_addr)) ? Qtrue : Qfalse;
+}
+
+static VALUE
 ipaddr_to_i(self)
     VALUE self;
 {
@@ -361,6 +371,7 @@ Init_ip_packet(void)
 
     cIPAddress = rb_define_class_under(mPcap, "IPAddress", rb_cObject);
     rb_define_singleton_method(cIPAddress, "new", ipaddr_s_new, 1);
+    rb_define_method(cIPAddress, "mcast?", ipaddr_is_mcast, 0);
     rb_define_method(cIPAddress, "to_i", ipaddr_to_i, 0);
     rb_define_method(cIPAddress, "to_s", ipaddr_to_s, 0);
     rb_define_method(cIPAddress, "num_s", ipaddr_num_s, 0);
